@@ -69,6 +69,16 @@ y_pred = np.concatenate([y_pred1,y_pred2])
 acc = np.mean(np.sqrt((y_pred-y_true)**2))
 print('Average accuracy (3600 test images):',acc)
 
+# Histogram (error)
+vet = np.zeros(len(y_true))
+for i in range(0,len(y_true)):
+    vet[i] = y_pred[i]-y_true[i]
+plt.hist(vet, 3000)
+axes = plt.gca()
+axes.set_xlim([-1.0,1.0]);
+plt.xlabel('error = (prediction - reference)')
+plt.ylabel('counts')
+
 # Plot predictions vs references
 plt.figure()
 plt.plot(y_true[0::],y_pred[0::],'r.')
